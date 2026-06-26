@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperion — Deep Front-End Site Mapping</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+
+    <nav class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 bg-gradient-to-tr from-indigo-500 to-violet-500 rounded shadow-lg shadow-indigo-500/20"></div>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Hyperion</span>
+            </div>
+            <a href="#crawl-demo" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-lg shadow-indigo-600/20">Try Demo</a>
+        </div>
+    </nav>
+
+    <header class="max-w-4xl mx-auto px-4 pt-16 pb-12 text-center">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6 animate-pulse">
+            Now Available for Windows
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+            Map the full picture, <br class="hidden sm:inline">not a shallow snapshot.
+        </h1>
+        <p class="text-base sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Give Hyperion a URL. It walks internal routes and grabs every page, script, asset, and style—perfectly structured in an IDE view.
+        </p>
+
+        <div id="crawl-demo" class="max-w-xl mx-auto bg-slate-900 border border-slate-800 p-2 rounded-xl shadow-2xl flex flex-col sm:flex-row gap-2 mb-12">
+            <div class="flex items-center flex-1 px-3 py-2 bg-slate-950 rounded-lg border border-slate-800">
+                <span class="text-slate-600 text-sm mr-1 select-none">https://</span>
+                <input id="url-input" type="text" placeholder="example.com" value="example.com" class="bg-transparent text-sm text-slate-200 focus:outline-none w-full">
+            </div>
+            <button onclick="startSimulatedCrawl()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm px-6 py-3 rounded-lg transition whitespace-nowrap active:scale-95">
+                Crawl Whole Site
+            </button>
+        </div>
+    </header>
+
+    <section class="max-w-4xl mx-auto px-4 mb-24">
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-rose-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500/40"></div>
+                    <span class="text-xs text-slate-500 ml-4 font-mono select-none" id="window-title">Hyperion View</span>
+                </div>
+                <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20" id="status-tag">Ready</span>
+            </div>
+            
+            <div class="p-4 sm:p-6 font-mono text-xs sm:text-sm text-slate-300 min-h-[340px] overflow-x-auto bg-slate-900/50">
+                <pre class="mono leading-relaxed" id="tree-output">📁 waiting for target url...
+📁 example.com/
+├── pages/
+│   ├── index.html
+│   ├── about.html
+│   └── pricing.html
+├── assets/
+│   ├── css/main.css
+│   └── js/app.js
+└── routes.map  ← site structure overview</pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 py-12 border-t border-slate-900">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 rounded-xl bg-slate-900/40 border border-slate-900 hover:border-slate-800 transition">
+                <div class="text-indigo-400 text-xl mb-3">🕸️</div>
+                <h3 class="font-semibold text-white mb-2">Whole-Site Crawl</h3>
+                <p class="text-xs sm:text-sm text-slate-400">Walks linked pages across the entire domain automatically.</p>
+            </div>
+            <div class="p-6 rounded-xl bg-slate-900/40 border border-slate-900 hover:border-slate-800 transition">
+                <div class="text-indigo-400 text-xl mb-3">📦</div>
+                <h3 class="font-semibold text-white mb-2">All Front-End Files</h3>
+                <p class="text-xs sm:text-sm text-slate-400">HTML, CSS, JS, and referenced media downloaded together.</p>
+            </div>
+            <div class="p-6 rounded-xl bg-slate-900/40 border border-slate-900 hover:border-slate-800 transition">
+                <div class="text-indigo-400 text-xl mb-3">🖥️</div>
+                <h3 class="font-semibold text-white mb-2">IDE-Style Browser</h3>
+                <p class="text-xs sm:text-sm text-slate-400">Built-in file tree lets you see how the site is wired.</p>
+            </div>
+            <div class="p-6 rounded-xl bg-slate-900/40 border border-slate-900 hover:border-slate-800 transition">
+                <div class="text-indigo-400 text-xl mb-3">🔥</div>
+                <h3 class="font-semibold text-white mb-2">Unlimited Captures</h3>
+                <p class="text-xs sm:text-sm text-slate-400">No page limits or throttled crawl previews. Map everything.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+            <h2 class="text-2xl font-bold text-white mb-6">Everything it captures</h2>
+            <ul class="space-y-4 text-sm sm:text-base text-slate-400">
+                <li class="flex items-start gap-2"><span class="text-indigo-400">✔</span> <strong>HTML Pages:</strong> Every discovered route & nested path.</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400">✔</span> <strong>CSS & JS:</strong> Stylesheets, bundles, and inline scripts.</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400">✔</span> <strong>Images & Icons:</strong> SVGs, PNGs, WebPs, and favicons.</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400">✔</span> <strong>Media & Fonts:</strong> Video streams, layout fonts, and manifests.</li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="text-2xl font-bold text-white mb-6">Perfect for</h2>
+            <ul class="space-y-4 text-sm sm:text-base text-slate-400">
+                <li class="flex items-start gap-2"><span class="text-emerald-400">✦</span> Deep auditing before migrations or site rebuilds.</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">✦</span> Exploring and analyzing reference or competitor layouts.</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">✦</span> Archiving complete website front-ends for offline review.</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">✦</span> Clean file asset views without messy system downloads.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-600">
+        <p>&copy; 2026 Hyperion. Designed for open-ended site structure inspection.</p>
+    </footer>
+
+    <script>
+        function startSimulatedCrawl() {
+            const input = document.getElementById('url-input').value || 'example.com';
+            const cleanUrl = input.replace(/^(https?:\/\/)?(www\.)?/, '');
+            
+            const statusTag = document.getElementById('status-tag');
+            const treeOutput = document.getElementById('tree-output');
+            const windowTitle = document.getElementById('window-title');
+
+            statusTag.textContent = "Crawling...";
+            statusTag.className = "text-xs font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 animate-pulse";
+            windowTitle.textContent = `Hyperion — Crawling ${cleanUrl}`;
+            treeOutput.textContent = `🔍 Initializing target: ${cleanUrl}\n📡 Analyzing site maps and route links...`;
+
+            setTimeout(() => {
+                statusTag.textContent = "Mapping Assets...";
+                treeOutput.textContent += `\n📦 Extracting global DOM trees and styles...`;
+            }, 1000);
+
+            setTimeout(() => {
+                statusTag.textContent = "Complete";
+                statusTag.className = "text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20";
+                windowTitle.textContent = `Hyperion — ${cleanUrl}`;
+                
+                treeOutput.textContent = `📁 ${cleanUrl}/
+├── pages/
+│   ├── index.html
+│   ├── about.html
+│   ├── pricing.html
+│   └── blog/
+│       ├── post-01.html
+│       └── post-02.html
+├── assets/
+│   ├── css/
+│   │   ├── main.css
+│   │   └── theme.css
+│   ├── js/
+│   │   ├── app.js
+│   │   └── vendor.js
+│   ├── images/
+│   │   ├── hero.webp
+│   │   └── logo.svg
+│   └── media/
+│       └── intro.mp4
+└── routes.map  ← site structure overview`;
+            }, 2200);
+        }
+    </script>
+</body>
+</html>
