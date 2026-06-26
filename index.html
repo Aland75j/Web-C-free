@@ -3,93 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>krdtv.online — Complete Platform Skin</title>
-    
+    <title>Hyperion — Real-Time Frontend Extractor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-accent: #6366f1;
-            --background-dark: #0f172a;
-            --surface-card: #1e293b;
-            --text-light: #f8fafc;
-        }
-        body {
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            margin: 0;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-        .header-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            background-color: #020617;
-            border-b: 1px solid #334155;
-        }
-        .brand-logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--primary-accent);
-        }
-        .nav-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover {
-            color: white;
-        }
-        .main-hero-showcase {
-            max-w: 800px;
-            margin: 5rem auto;
-            text-align: center;
-            padding: 0 1rem;
-        }
-        .main-hero-showcase h1 {
-            font-size: 2.5rem;
-            letter-spacing: -0.025em;
-            margin-bottom: 1rem;
-        }
-        .main-hero-showcase p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        .action-button {
-            background-color: var(--primary-accent);
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 1.7rem;
-            border-radius: 0.5rem;
-            border: none;
-            cursor: pointer;
-            margin-top: 1.5rem;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
 
-    <header class="header-navigation">
-        <div class="brand-logo">KRDTV NETWORK</div>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Features</a>
-            <a href="#">Content Stream</a>
-        </nav>
+    <nav class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 bg-gradient-to-tr from-indigo-500 to-violet-500 rounded shadow-lg shadow-indigo-500/20"></div>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Hyperion Pro</span>
+            </div>
+            <span class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded border border-indigo-500/20">v2.0 Real Engine</span>
+        </div>
+    </nav>
+
+    <header class="max-w-4xl mx-auto px-4 pt-12 pb-6 text-center">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-6 select-none">
+            ● Active Asset Link Rebuilder Online
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
+            True Frontend Code Source Extractor
+        </h1>
+        <p class="text-sm sm:text-lg text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+            Extracts actual production HTML code, converts relative links to absolute live pathways, and builds a single deployment file.
+        </p>
+
+        <div id="crawl-demo" class="max-w-xl mx-auto bg-slate-900 border border-slate-800 p-2 rounded-xl shadow-2xl flex flex-col gap-2 mb-6">
+            <div class="flex items-center flex-1 px-3 py-3 bg-slate-950 rounded-lg border border-slate-800">
+                <span class="text-slate-600 text-sm mr-1 select-none">Target URL:</span>
+                <input id="url-input" type="text" placeholder="https://www.krdtv.online" value="https://www.krdtv.online" class="bg-transparent text-sm text-slate-200 focus:outline-none w-full">
+            </div>
+            <button onclick="executeRealCrawl()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm py-3 rounded-lg transition active:scale-[0.98]">
+                Extract Real Frontend Code
+            </button>
+        </div>
     </header>
 
-    <main class="main-hero-showcase">
-        <h1>All codes for krdtv.online compiled into a single unified workspace.</h1>
-        <p>This layout includes all cascading styles, semantic navigation structures, document assets, and framework tracking properties embedded locally.</p>
-        <button class="action-button">Enter Hub Portal</button>
-    </main>
+    <section class="max-w-4xl mx-auto px-4 mb-16">
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-rose-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500/40"></div>
+                    <span class="text-xs text-slate-400 ml-4 font-mono select-none" id="window-title">source_index.html</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded border border-slate-700" id="status-tag">Awaiting Input</span>
+                    <button id="copy-btn" onclick="copyUnifiedCode()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-sans font-semibold text-xs px-4 py-1.5 rounded-lg transition active:scale-95">
+                        Copy Code
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-4 font-mono text-xs sm:text-sm text-slate-300 min-h-[400px] bg-slate-950/40 relative">
+                <div class="overflow-y-auto max-h-[550px] rounded-lg bg-slate-950 p-4 border border-slate-900">
+                    <pre class="text-xs text-slate-400 leading-relaxed whitespace-pre-wrap break-all select-all selection:bg-indigo-600" id="code-display-box">&lt;!-- Target site code compilation layout will populate completely inside this container view upon hitting crawl. --&gt;</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-600">
+        <p>&copy; 2026 Hyperion Pro. Genuine client-side frontend compilation system.</p>
+    </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("Hyperion unified layout code base initialized successfully for krdtv.online.");
-        });
+        async function executeRealCrawl() {
+            let input = document.getElementById('url-input').value.trim();
+            if (!input) input = 'https://www.krdtv.online';
+            
+            // Format URL cleanly
+            let cleanUrl = input;
+            if (!/^https?:\/\//i.test(cleanUrl)) {
+                cleanUrl = 'https://' + cleanUrl;
+            }
+            if (!cleanUrl.endsWith('/')) {
+                cleanUrl += '/';
+            }
+
+            const statusTag = document.getElementById('status-tag');
+            const codeBox = document.getElementById('code-display-box');
+            const windowTitle = document.getElementById('window-title');
+            const copyBtn = document.getElementById('copy-btn');
+
+            copyBtn.textContent = "Copy Code";
+            statusTag.textContent = "Connecting...";
+            statusTag.className = "text-xs font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 animate-pulse";
+            windowTitle.textContent = `Extracting from: ${cleanUrl}`;
+            codeBox.textContent = `\n`;
+
+            // List of various open CORS proxies to rotate through if blocked
+            const proxyGateways = [
+                `https://api.allorigins.win/raw?url=${encodeURIComponent(cleanUrl)}`,
+                `https://corsproxy.io/?${encodeURIComponent(cleanUrl)}`,
+                `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(cleanUrl)}`
+            ];
+
+            let fetchedHtml = null;
+            let currentGatewayIndex = 0;
+
+            // Cycle through gateways sequentially until one works
+            while (currentGatewayIndex < proxyGateways.length && !fetchedHtml) {
+                try {
+                    console.log(`Attempting source fetch via Gateway ${currentGatewayIndex + 1}...`);
+                    let response = await fetch(proxyGateways[currentGatewayIndex]);
+                    if (response.ok) {
+                        let textResult = await response.text();
+                        if (textResult && textResult.length > 150) {
+                            fetchedHtml = textResult;
+                            break;
+                        }
+                    }
+                } catch (err) {
+                    console.warn(`Gateway ${currentGatewayIndex + 1} rejected request.`);
+                }
+                currentGatewayIndex++;
+            }
+
+            // Processing Pipeline
+            if (fetchedHtml) {
+                statusTag.textContent = "Processing Assets...";
+                
+                try {
+                    // Turn raw text into a parsable virtual DOM tree
+                    const domParser = new DOMParser();
+                    const virtualDoc = domParser.parseFromString(fetchedHtml, 'text/html');
+                    
+                    // Fix relative paths: links, styling blueprints, media wrappers, script logic nodes
+                    const fixAssetPaths = (selector, attribute) => {
+                        virtualDoc.querySelectorAll(selector).forEach(element => {
+                            let originalPath = element.getAttribute(attribute);
+                            if (originalPath && !originalPath.startsWith('http') && !originalPath.startsWith('//') && !originalPath.startsWith('data:')) {
+                                try {
+                                    // Parse relative item against target base domain link structure
+                                    let resolvedAbsoluteUrl = new URL(originalPath, cleanUrl).href;
+                                    element.setAttribute(attribute, resolvedAbsoluteUrl);
+                                } catch(e) {
+                                    console.error("Path resolution failed for element:", originalPath);
+                                }
+                            }
+                        });
+                    };
+
+                    // Execute live asset remapping across all common web modules
+                    fixAssetPaths('link', 'href');
+                    fixAssetPaths('script', 'src');
+                    fixAssetPaths('img', 'src');
+                    fixAssetPaths('source', 'src');
+                    fixAssetPaths('a', 'href');
+
+                    // Extract completely compiled, error-proof raw text package
+                    const optimizedOutputCode = virtualDoc.documentElement.outerHTML;
+                    
+                    codeBox.textContent = optimizedOutputCode;
+                    statusTag.textContent = "Success";
+                    statusTag.className = "text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20";
+                } catch (processingError) {
+                    codeBox.textContent = fetchedHtml; // Fallback to completely raw scraped code if parsing errors hit
+                    statusTag.textContent = "Raw Partial Copy";
+                    statusTag.className = "text-xs font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20";
+                }
+            } else {
+                // If completely blocked by Cloudflare firewall rules on all 3 proxy pathways
+                statusTag.textContent = "Security Blocked";
+                statusTag.className = "text-xs font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20";
+                codeBox.textContent = `\n\nTarget site "${cleanUrl}" is protected by heavy server-side Firewalls (Cloudflare/Sucuri).\n\nTo view real frontend configurations for protected domains safely on mobile:\n1. Open Chrome/Brave on your device and navigate directly to ${cleanUrl}\n2. Type "view-source:${cleanUrl}" inside your mobile search bar to bypass limitations.\n3. Copy the code block from there and paste it into any web builder space.`;
+            }
+        }
+
+        function copyUnifiedCode() {
+            const codeText = document.getElementById('code-display-box').textContent;
+            const copyBtn = document.getElementById('copy-btn');
+
+            navigator.clipboard.writeText(codeText).then(() => {
+                copyBtn.textContent = "Copied! ✓";
+                setTimeout(() => { copyBtn.textContent = "Copy Code"; }, 2000);
+            }).catch(err => {
+                copyBtn.textContent = "Failed ✗";
+            });
+        }
     </script>
 </body>
 </html>
